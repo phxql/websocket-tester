@@ -1,5 +1,6 @@
 package de.mkammerer.websockettester;
 
+import org.eclipse.jetty.websocket.client.ClientUpgradeRequest;
 import org.eclipse.jetty.websocket.client.WebSocketClient;
 
 import java.io.IOException;
@@ -21,7 +22,8 @@ public class Main {
     private static void run(WebSocketClient client) throws IOException, InterruptedException {
         Handler handler = new Handler();
 
-        client.connect(handler, URI.create(URL));
+        ClientUpgradeRequest request = new ClientUpgradeRequest();
+        client.connect(handler, URI.create(URL), request);
 
         handler.awaitClose();
     }
