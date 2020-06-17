@@ -19,7 +19,7 @@ public class Handler {
     private final CountDownLatch closeLatch;
 
     public Handler() {
-        this.closeLatch = new CountDownLatch(1);
+        closeLatch = new CountDownLatch(1);
     }
 
     public void awaitClose() throws InterruptedException {
@@ -29,7 +29,7 @@ public class Handler {
     @OnWebSocketClose
     public void onClose(int statusCode, String reason) {
         LOGGER.debug("onClose({}, '{}')", statusCode, reason);
-        this.closeLatch.countDown();
+        closeLatch.countDown();
     }
 
     @OnWebSocketConnect
